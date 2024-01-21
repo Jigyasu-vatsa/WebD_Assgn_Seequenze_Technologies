@@ -85,6 +85,7 @@ body {
   color: #f1f1f1;
 }
 
-    border-radius: 10px;
-    overflow: hidden;
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
