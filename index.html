@@ -3,20 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Your Dashboard</title>
+    <style>
+        /* Add your CSS styling here */
+        .card {
+            width: 200px;
+            height: 150px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <title>Random Image Cards</title>
 </head>
 <body>
-    <div class="dashboard">
-        <!-- Card placeholders will be dynamically populated -->
-        <div class="card" id="card1"></div>
-        <div class="card" id="card2"></div>
-        <div class="card" id="card3"></div>
-        <div class="card" id="card4"></div>
-        <div class="card" id="card5"></div>
-        <div class="card" id="card6"></div>
-    </div>
+    <div id="cardContainer" style="display: flex; flex-wrap: wrap;"></div>
 
-    <script src="scripts.js"></script>
+    <script>
+        const apiEndpoint = "https://picsum.photos/v2/list?page=1&limit=6";
+        const cardContainer = document.getElementById("cardContainer");
+
+        async function fetchRandomImages() {
+            try {
+                const response = await fetch(apiEndpoint);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data.map(entry => entry.download_url);
+            } catch (error) {
+                console.error("Error fetching random images:", error.message);
+                return [];
+            }
+        }
+
+        async function populateCards() {
+            const imageUrls = await fetchRandomImages();
+
+            if (imageUrls.length === 0) {
+                // Handle the case where no images are fetched
+                console.log("No images available.");
+                return;
+            }
+
+            imageUrls.forEach((imageUrl, index) => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.style.backgroundImage = `url(${imageUrl})`;
+
+                // You can customize the content or styles of each card here
+
+                cardContainer.appendChild(card);
+            });
+        }
+
+        // Populate cards when the page loads
+        window.onload = populateCards;
+    </script>
 </body>
 </html>
