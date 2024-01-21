@@ -103,3 +103,12 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+
+
+.picbtmcntr{
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
