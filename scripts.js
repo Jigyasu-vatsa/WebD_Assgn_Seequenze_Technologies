@@ -18,6 +18,7 @@ async function populateCards() {
     for (let i = 0; i < imageUrls.length; i++) {
         const card = document.getElementById(`card${i + 1}`);
         card.style.backgroundImage = `url(${imageUrls[i]})`;
+        
         card.style.backgroundSize = "cover";
         card.style.backgroundPosition = "center";
     }
