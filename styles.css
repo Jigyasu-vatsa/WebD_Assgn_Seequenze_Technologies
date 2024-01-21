@@ -5,7 +5,7 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: Gray;
+  background-color: Black;
   overflow-x: hidden
   padding-top: 20px;
 }
@@ -53,7 +53,7 @@
         }
 
         div.scrollmenu {
-          background-color: Gray;
+          background-color: Black;
           overflow: auto;
           white-space: nowrap;
         }
